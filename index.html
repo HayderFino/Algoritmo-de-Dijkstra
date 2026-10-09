@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra: Cuaderno de Investigación de Operaciones</title>
+    <link rel="icon" href="data:,">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="vendor/katex/dist/katex.min.css">
+    <script defer src="vendor/katex/dist/katex.min.js"></script>
+    <script defer src="vendor/katex/dist/contrib/auto-render.min.js"></script>
+    
+    <script>
+        window.addEventListener('load', () => {
+            if (typeof katex === 'undefined') {
+                console.warn("KaTeX no pudo cargarse. Usando fallback de texto legible.");
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div id="global-error" class="tie-breaker-note" style="display:none; position:fixed; top:0; left:0; width:100%; z-index:9999; padding:10px; background-color: var(--ink-red); color: white;"></div>
+    
+    <header>
+        <h1>Algoritmo de Dijkstra</h1>
+        <p class="subtitle">Cuaderno de Investigación de Operaciones</p>
+    </header>
+
+    <main>
+        <section class="left-panel">
+            <div class="graph-container">
+                <svg id="graph-svg" width="100%" height="560"></svg>
+            </div>
+            
+            <div class="controls-panel">
+                <h3>Configuración de la Red</h3>
+                
+                <div id="error-message" class="tie-breaker-note" style="display:none; margin-bottom:1rem;"></div>
+
+                <div class="config-grid">
+                    <label>Nodos (2-30): 
+                        <input type="number" id="node-count" min="2" max="30">
+                    </label>
+                    <label>Tipo: 
+                        <select id="graph-type">
+                            <option value="directed">Dirigido</option>
+                            <option value="undirected">No dirigido</option>
+                        </select>
+                    </label>
+                    <label>Origen: 
+                        <select id="start-node"></select>
+                    </label>
+                    <label>Destino: 
+                        <select id="end-node"></select>
+                    </label>
+                </div>
+
+                <h4>Agregar Conexión</h4>
+                <div class="edge-form">
+                    <select id="edge-u"></select> 
+                    <select id="edge-dir" style="width: auto;">
+                        <option value="forward">→</option>
+                        <option value="both">↔</option>
+                        <option value="backward">←</option>
+                    </select>
+                    <select id="edge-v"></select>
+                    <input type="number" id="edge-w" placeholder="Peso" step="0.1">
+                    <button id="btn-add-edge" class="primary">Agregar</button>
+                </div>
+
+                <h4>Conexiones Actuales</h4>
+                <table class="dijkstra-table" id="edges-table">
+                    <thead>
+                        <tr><th>Desde</th><th>Dir</th><th>Hasta</th><th>Peso</th><th>Acción</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="button-group" style="margin-top:1rem;">
+                    <button id="btn-example">Cargar Ejemplo</button>
+                    <button id="btn-clear">Limpiar Red</button>
+                    <button id="btn-start" class="primary">Resolver con Dijkstra</button>
+                </div>
+
+                <div class="step-controls" id="step-controls" style="display: none; margin-top:1rem;">
+                    <button id="btn-prev">Anterior</button>
+                    <button id="btn-next">Siguiente</button>
+                    <button id="btn-auto">Autoplay</button>
+                    <button id="btn-finish">Ver Resultado Final</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-panel">
+            <div class="formula-box">
+                <div class="math-eq">\[ e(i) = \min(e(i), E(j) + d(j,i)) \]</div>
+                <ul class="explanation">
+                    <li><strong>e(i)</strong>: distancia provisional conocida hasta el nodo i.</li>
+                    <li><strong>E(j)</strong>: distancia permanente del nodo j seleccionado.</li>
+                    <li><strong>d(j,i)</strong>: peso de la conexión desde el nodo j hasta el nodo i.</li>
+                    <li><strong>min(...)</strong>: selecciona el valor mínimo (el camino más corto).</li>
+                    <li><strong>∞</strong>: representa una distancia inalcanzable por ahora.</li>
+                </ul>
+            </div>
+
+            <div id="history-container">
+                <p class="placeholder-text">Configura el grafo y presiona "Resolver con Dijkstra".</p>
+            </div>
+
+            <div id="table-container"></div>
+            <div id="result-container" style="display: none;"></div>
+        </section>
+    </main>
+
+    <script type="module" src="src/app.js"></script>
+</body>
+</html>

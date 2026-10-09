@@ -1,0 +1,482 @@
+
+=== ESCENARIO: LocalStorage vacío ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 156.9 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: positions: {1:{x:null,y:null}} (solo nodo 1) ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 151.6 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: positions todas null ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 151.6 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: positions con strings/NaN-like ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 151.6 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: positions ausentes (formato viejo) ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 151.6 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (96 elementos, 455 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 151.6 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: JSON corrupto ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 156.9 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: aristas inválidas (peso NaN / nodo inexistente) ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 156.9 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== ESCENARIO: nodes no es arreglo ===
+  OK   [inicial] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [inicial] c) 11 <circle> (hay 11)
+  OK   [inicial] c) cx/cy finitos
+  OK   [inicial] c) centros dentro del viewBox
+  OK   [inicial] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   d) .katex-error = 0 (hay 0)
+  OK   d) .katex presente en recuadro de fórmula (hay 1)
+  OK   4) Agregar conexión: Desde=1, Hasta=2 distintos
+  OK   [Siguiente 1] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 1] c) 11 <circle> (hay 11)
+  OK   [Siguiente 1] c) cx/cy finitos
+  OK   [Siguiente 1] c) centros dentro del viewBox
+  OK   [Siguiente 1] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 1] d) .katex-error = 0
+  OK   [Siguiente 2] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 2] c) 11 <circle> (hay 11)
+  OK   [Siguiente 2] c) cx/cy finitos
+  OK   [Siguiente 2] c) centros dentro del viewBox
+  OK   [Siguiente 2] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 2] d) .katex-error = 0
+  OK   [Siguiente 3] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 3] c) 11 <circle> (hay 11)
+  OK   [Siguiente 3] c) cx/cy finitos
+  OK   [Siguiente 3] c) centros dentro del viewBox
+  OK   [Siguiente 3] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 3] d) .katex-error = 0
+  OK   [Siguiente 4] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 4] c) 11 <circle> (hay 11)
+  OK   [Siguiente 4] c) cx/cy finitos
+  OK   [Siguiente 4] c) centros dentro del viewBox
+  OK   [Siguiente 4] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 4] d) .katex-error = 0
+  OK   [Siguiente 5] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [Siguiente 5] c) 11 <circle> (hay 11)
+  OK   [Siguiente 5] c) cx/cy finitos
+  OK   [Siguiente 5] c) centros dentro del viewBox
+  OK   [Siguiente 5] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   [Siguiente 5] d) .katex-error = 0
+  OK   [arrastre al centro] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre al centro] c) 11 <circle> (hay 11)
+  OK   [arrastre al centro] c) cx/cy finitos
+  OK   [arrastre al centro] c) centros dentro del viewBox
+  OK   [arrastre al centro] c) distancia mínima entre centros 156.9 > 32
+  OK   [arrastre fuera del lienzo] b) atributos SVG sin NaN/undefined (129 elementos, 645 atributos)
+  OK   [arrastre fuera del lienzo] c) 11 <circle> (hay 11)
+  OK   [arrastre fuera del lienzo] c) cx/cy finitos
+  OK   [arrastre fuera del lienzo] c) centros dentro del viewBox
+  OK   [arrastre fuera del lienzo] c) distancia mínima entre centros 156.9 > 32
+  OK   a) 0 eventos console error/warning, pageerror, requestfailed (hay 0)
+  OK   LocalStorage guardado sin NaN/null en posiciones
+  INFO renders totales en la prueba: 7 (antes de resolver: 1)
+  OK   sin bucle de renderizado (renders < 300) -> 7
+
+=== RESUMEN: 456 comprobaciones, 0 fallos ===

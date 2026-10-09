@@ -1,0 +1,203 @@
+:root {
+    --bg-paper: #F4EFE0;
+    --ink-dark: #1F2E5A;
+    --ink-red: #B3261E;
+    --ink-green: #2E6B4F;
+    --ink-ochre: #C98A1B;
+    
+    --font-serif: 'Fraunces', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-hand: 'Caveat', cursive;
+}
+
+body {
+    background-color: var(--bg-paper);
+    color: var(--ink-dark);
+    font-family: var(--font-serif);
+    margin: 0;
+    padding: 20px;
+    background-image: 
+        linear-gradient(var(--bg-paper) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-paper) 1px, transparent 1px),
+        linear-gradient(rgba(31, 46, 90, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 46, 90, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    margin-top: 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--ink-dark);
+    padding-bottom: 1rem;
+}
+
+.subtitle {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: var(--ink-dark);
+    opacity: 0.8;
+}
+
+main {
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-left: 1px dashed var(--ink-dark);
+    padding-left: 2rem;
+}
+
+/* SVG Graph */
+.graph-container {
+    border: 2px solid var(--ink-dark);
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: 
+        linear-gradient(rgba(31, 46, 90, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 46, 90, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Formula Box */
+.formula-box {
+    border: 3px double var(--ink-dark);
+    padding: 1rem;
+    background-color: var(--bg-paper);
+}
+
+.math-eq {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.explanation {
+    font-size: 0.95rem;
+    list-style-type: square;
+    margin-bottom: 0;
+}
+
+.explanation li {
+    margin-bottom: 0.3rem;
+}
+
+/* Iterations */
+.iteration-block {
+    border-bottom: 1px solid rgba(31, 46, 90, 0.3);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.equation-row {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--ink-ochre);
+    margin-bottom: 1rem;
+}
+
+.tie-breaker-note {
+    font-family: var(--font-hand);
+    color: var(--ink-red);
+    font-size: 1.2rem;
+}
+
+/* Tables */
+.dijkstra-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    background: white;
+}
+
+.dijkstra-table th, .dijkstra-table td {
+    border: 1px solid var(--ink-dark);
+    padding: 0.5rem;
+    text-align: right;
+}
+
+.dijkstra-table th {
+    font-family: var(--font-serif);
+    font-variant: small-caps;
+    background-color: rgba(31, 46, 90, 0.1);
+}
+
+.permanent {
+    font-weight: bold;
+    color: var(--ink-green);
+    text-decoration: underline;
+}
+
+.provisional {
+    color: var(--ink-ochre);
+}
+
+/* Controls */
+.config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+input, select, button {
+    font-family: var(--font-mono);
+    border: 1px solid var(--ink-dark);
+    background: white;
+    padding: 0.4rem;
+    color: var(--ink-dark);
+}
+
+button {
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+}
+
+button:hover {
+    background: var(--ink-dark);
+    color: white;
+}
+
+button.primary {
+    background: var(--ink-dark);
+    color: white;
+}
+
+button.primary:hover {
+    background: var(--ink-ochre);
+    color: var(--ink-dark);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+    .right-panel {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px dashed var(--ink-dark);
+        padding-top: 2rem;
+    }
+}
