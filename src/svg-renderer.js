@@ -20,6 +20,9 @@ export class SVGRenderer {
                 <marker id="arrow" markerWidth="6" markerHeight="6" refX="28" refY="3" orient="auto">
                     <path d="M0,0 L0,6 L6,3 z" fill="var(--ink-dark)"/>
                 </marker>
+                <marker id="arrow-lg" markerWidth="6" markerHeight="6" refX="35" refY="3" orient="auto">
+                    <path d="M0,0 L0,6 L6,3 z" fill="var(--ink-dark)"/>
+                </marker>
                 <marker id="arrow-green" markerWidth="6" markerHeight="6" refX="28" refY="3" orient="auto">
                     <path d="M0,0 L0,6 L6,3 z" fill="var(--ink-green)"/>
                 </marker>
@@ -50,15 +53,15 @@ export class SVGRenderer {
             line.setAttribute("stroke", "var(--ink-dark)");
             line.setAttribute("stroke-width", "2");
             
+            const markerEnd = edge.v.length > 3 ? "url(#arrow-lg)" : "url(#arrow)";
+            const markerStart = edge.u.length > 3 ? "url(#arrow-lg)" : "url(#arrow)";
+
             if (edge.direction === 'forward') {
-                line.setAttribute("marker-end", "url(#arrow)");
+                line.setAttribute("marker-end", markerEnd);
             } else if (edge.direction === 'backward') {
-                line.setAttribute("marker-start", "url(#arrow)");
-                // SVG marker-start is tricky with orientation, but we'll swap coordinates visually
                 line.setAttribute("x1", p2.x); line.setAttribute("y1", p2.y);
                 line.setAttribute("x2", p1.x); line.setAttribute("y2", p1.y);
-                line.setAttribute("marker-end", "url(#arrow)");
-                line.removeAttribute("marker-start");
+                line.setAttribute("marker-end", markerStart);
             }
 
             edgesGroup.appendChild(line);
@@ -101,10 +104,11 @@ export class SVGRenderer {
             g.style.cursor = "pointer";
             g.addEventListener('mousedown', (e) => { this.draggedNode = node; });
 
+            const r = node.length > 3 ? 24 : 16;
             const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
             circle.setAttribute("cx", "0");
             circle.setAttribute("cy", "0");
-            circle.setAttribute("r", "16");
+            circle.setAttribute("r", String(r));
             circle.setAttribute("fill", "var(--bg-paper)");
             circle.setAttribute("stroke", isPerm ? "var(--ink-green)" : "var(--ink-dark)");
             circle.setAttribute("stroke-width", isPerm ? "4" : "2");
@@ -114,14 +118,15 @@ export class SVGRenderer {
             }
 
             const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            label.setAttribute("y", "5");
+            label.setAttribute("y", node.length > 3 ? "4" : "5");
             label.setAttribute("text-anchor", "middle");
-            label.setAttribute("font-family", "var(--font-serif)");
+            label.setAttribute("font-family", node.length > 3 ? "var(--font-mono)" : "var(--font-serif)");
             label.setAttribute("font-weight", "bold");
+            label.setAttribute("font-size", node.length > 3 ? "11px" : "14px");
             label.textContent = node;
 
             const distLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            distLabel.setAttribute("y", "-22");
+            distLabel.setAttribute("y", String(-r - 6));
             distLabel.setAttribute("text-anchor", "middle");
             distLabel.setAttribute("font-family", "var(--font-hand)");
             distLabel.setAttribute("font-size", "1.1rem");
@@ -129,9 +134,9 @@ export class SVGRenderer {
             distLabel.textContent = `d=${dist}`;
 
             const bgRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            bgRect.setAttribute("x", "-20");
-            bgRect.setAttribute("y", "-35");
-            bgRect.setAttribute("width", "40");
+            bgRect.setAttribute("x", String(-r - 4));
+            bgRect.setAttribute("y", String(-r - 19));
+            bgRect.setAttribute("width", String((r + 4) * 2));
             bgRect.setAttribute("height", "15");
             bgRect.setAttribute("fill", "var(--bg-paper)");
             

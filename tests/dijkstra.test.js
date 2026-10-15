@@ -214,5 +214,30 @@ runTest("testMixedGraphReverseImpossible", () => {
     assert.strictEqual(res.distances.get('1'), Infinity); // No puede volver a 1
 });
 
+runTest("testThreeJugsPuzzle", () => {
+    const config = new AppConfig();
+    config.initThreeJugsExample();
+    const g = config.buildGraph();
+    const result = runDijkstra(g, '8,0,0', '4,4,0');
+    
+    // Distancia mínima: 7 decantaciones
+    assert.strictEqual(result.distances.get('4,4,0'), 7);
+    assert.strictEqual(result.startNode, '8,0,0');
+    assert.deepStrictEqual(result.predecessors.get('4,4,0'), ['1,4,3']);
+
+    // Reconstrucción del camino óptimo
+    let curr = '4,4,0';
+    const path = [curr];
+    while (curr !== '8,0,0') {
+        curr = result.predecessors.get(curr)[0];
+        path.unshift(curr);
+    }
+    const expectedPath = [
+        '8,0,0', '3,5,0', '3,2,3', '6,2,0', 
+        '6,0,2', '1,5,2', '1,4,3', '4,4,0'
+    ];
+    assert.deepStrictEqual(path, expectedPath);
+});
+
 console.log(`\nResumen total: ${passed} / ${total} pruebas pasaron correctamente.`);
 if (passed !== total) process.exit(1);

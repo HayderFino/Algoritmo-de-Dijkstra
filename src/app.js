@@ -143,11 +143,62 @@ document.getElementById('btn-add-edge').addEventListener('click', () => {
     }
 });
 
-document.getElementById('btn-example').addEventListener('click', () => {
-    appConfig = new AppConfig();
-    appConfig.initExample();
+const EXERCISES = {
+    1: {
+        title: "Ejercicio 1: Ejemplo 6.3-1 (Red de Distribución Ponderada)",
+        desc: "Determinar la ruta más corta desde el nodo origen <strong>1</strong> hasta el nodo destino <strong>11</strong> a través de la red mixta ponderada, calculando las distancias acumuladas mínimas y el conjunto de predecesores de cada nodo.",
+        meta: `
+            <span class="meta-pill"><strong>Origen:</strong> Nodo 1</span>
+            <span class="meta-pill"><strong>Destino:</strong> Nodo 11</span>
+            <span class="meta-pill"><strong>Total Nodos:</strong> 11</span>
+            <span class="meta-pill"><strong>Tipo:</strong> Red Mixta Ponderada</span>
+        `,
+        load: () => {
+            appConfig = new AppConfig();
+            appConfig.initExample();
+        }
+    },
+    2: {
+        title: "Ejercicio 2: Ejemplo 6.3-3 (Acertijo de las tres jarras)",
+        desc: "Una jarra de 8 galones está llena de líquido. Dado que hay dos jarras vacías de 5 y 3 galones, divida los 8 galones de líquido en dos partes iguales utilizando sólo las tres jarras. ¿Cuál es el mínimo de transferencias (decantaciones) necesarias para obtener este resultado?",
+        meta: `
+            <span class="meta-pill"><strong>Estado Inicial:</strong> (8, 0, 0)</span>
+            <span class="meta-pill"><strong>Estado Meta:</strong> (4, 4, 0)</span>
+            <span class="meta-pill"><strong>Capacidades:</strong> 8, 5 y 3 galones</span>
+            <span class="meta-pill"><strong>Costo por Decantación:</strong> d = 1</span>
+            <span class="meta-pill"><strong>Solución Mínima:</strong> 7 decantaciones</span>
+        `,
+        load: () => {
+            appConfig = new AppConfig();
+            appConfig.initThreeJugsExample();
+        }
+    }
+};
+
+function switchExercise(num) {
+    const ex = EXERCISES[num];
+    if (!ex) return;
+    
+    document.querySelectorAll('.exercise-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.ex === String(num));
+    });
+    
+    const titleEl = document.getElementById('ex-title');
+    const descEl = document.getElementById('ex-desc');
+    const metaEl = document.getElementById('ex-meta');
+    if (titleEl) titleEl.innerHTML = ex.title;
+    if (descEl) descEl.innerHTML = ex.desc;
+    if (metaEl) metaEl.innerHTML = ex.meta;
+
+    ex.load();
     resetAlgorithm();
-});
+}
+
+document.getElementById('tab-ex1')?.addEventListener('click', () => switchExercise(1));
+document.getElementById('tab-ex2')?.addEventListener('click', () => switchExercise(2));
+
+document.getElementById('btn-example')?.addEventListener('click', () => switchExercise(1));
+document.getElementById('btn-example-3jugs')?.addEventListener('click', () => switchExercise(2));
 
 document.getElementById('btn-clear').addEventListener('click', () => {
     const n = appConfig.nodes.length;
@@ -274,8 +325,18 @@ window.addEventListener('load', renderStaticMath);
 
 // Inicialización
 if (!appConfig.load()) {
-    // Si no había en localStorage, cargar ejemplo por defecto
-    document.getElementById('btn-example').click();
+    switchExercise(1);
 } else {
+    const isEx2 = appConfig.nodes.includes('8,0,0');
+    const ex = isEx2 ? EXERCISES[2] : EXERCISES[1];
+    document.querySelectorAll('.exercise-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.ex === (isEx2 ? '2' : '1'));
+    });
+    const titleEl = document.getElementById('ex-title');
+    const descEl = document.getElementById('ex-desc');
+    const metaEl = document.getElementById('ex-meta');
+    if (titleEl) titleEl.innerHTML = ex.title;
+    if (descEl) descEl.innerHTML = ex.desc;
+    if (metaEl) metaEl.innerHTML = ex.meta;
     syncUI();
 }

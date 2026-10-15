@@ -32,6 +32,32 @@
         <p class="subtitle">Cuaderno de Investigación de Operaciones</p>
     </header>
 
+    <section class="exercise-selection-wrap">
+        <div class="exercise-tabs">
+            <button type="button" class="exercise-tab active" id="tab-ex1" data-ex="1">
+                <span class="tab-badge">Ejercicio 1</span>
+                <span class="tab-title">Red de Distribución (11 Nodos)</span>
+            </button>
+            <button type="button" class="exercise-tab" id="tab-ex2" data-ex="2">
+                <span class="tab-badge">Ejercicio 2</span>
+                <span class="tab-title">Acertijo de las Tres Jarras (Ejemplo 6.3-3)</span>
+            </button>
+        </div>
+
+        <div class="exercise-statement-box" id="exercise-box">
+            <h3 class="exercise-statement-title" id="ex-title">Ejercicio 1: Ejemplo 6.3-1 (Red de Distribución Ponderada)</h3>
+            <p class="exercise-statement-desc" id="ex-desc">
+                Determinar la ruta más corta desde el nodo origen <strong>1</strong> hasta el nodo destino <strong>11</strong> a través de la red mixta ponderada, calculando las distancias acumuladas mínimas y el conjunto de predecesores de cada nodo.
+            </p>
+            <div class="exercise-statement-meta" id="ex-meta">
+                <span class="meta-pill"><strong>Origen:</strong> Nodo 1</span>
+                <span class="meta-pill"><strong>Destino:</strong> Nodo 11</span>
+                <span class="meta-pill"><strong>Total Nodos:</strong> 11</span>
+                <span class="meta-pill"><strong>Tipo:</strong> Red Mixta Ponderada</span>
+            </div>
+        </div>
+    </section>
+
     <main>
         <section class="left-panel">
             <div class="graph-container">
@@ -82,8 +108,9 @@
                     <tbody></tbody>
                 </table>
 
-                <div class="button-group" style="margin-top:1rem;">
-                    <button id="btn-example">Cargar Ejemplo</button>
+                <div class="button-group" style="margin-top:1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <button id="btn-example">Cargar Ejercicio 1</button>
+                    <button id="btn-example-3jugs">Cargar Ejercicio 2</button>
                     <button id="btn-clear">Limpiar Red</button>
                     <button id="btn-start" class="primary">Resolver con Dijkstra</button>
                 </div>

@@ -32,7 +32,7 @@ h1, h2, h3, h4 {
 
 header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border-bottom: 2px solid var(--ink-dark);
     padding-bottom: 1rem;
 }
@@ -42,6 +42,118 @@ header {
     font-size: 1.5rem;
     color: var(--ink-dark);
     opacity: 0.8;
+}
+
+/* Exercise Navigation and Statement Box */
+.exercise-selection-wrap {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.exercise-tabs {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.exercise-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.25rem;
+    border: 2px solid var(--ink-dark);
+    background: white;
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.exercise-tab:hover {
+    background: rgba(31, 46, 90, 0.08);
+}
+
+.exercise-tab.active {
+    background: var(--ink-dark);
+    color: white;
+    box-shadow: 2px 2px 0 var(--ink-ochre);
+}
+
+.tab-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    border-radius: 3px;
+    background: rgba(31, 46, 90, 0.12);
+    color: var(--ink-dark);
+}
+
+.exercise-tab.active .tab-badge {
+    background: var(--ink-ochre);
+    color: var(--ink-dark);
+    font-weight: bold;
+}
+
+.exercise-statement-box {
+    border: 2px solid var(--ink-dark);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1.25rem 1.5rem;
+    position: relative;
+    box-shadow: 3px 3px 0 rgba(31, 46, 90, 0.15);
+}
+
+.exercise-statement-box::before {
+    content: "LIBRO: HAMDY A. TAHA — INVESTIGACIÓN DE OPERACIONES";
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-ochre);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.exercise-statement-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    margin: 0.2rem 0 0.5rem 0;
+    color: var(--ink-dark);
+}
+
+.exercise-statement-desc {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    color: #222;
+}
+
+.exercise-statement-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--bg-paper);
+    border: 1px solid var(--ink-dark);
+    padding: 0.25rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.meta-pill strong {
+    color: var(--ink-red);
 }
 
 main {

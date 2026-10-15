@@ -112,6 +112,7 @@ export function runDijkstra(graph, startNode, endNode = null) {
     return {
         distances,
         predecessors,
-        history
+        history,
+        startNode
     };
 }
