@@ -32,13 +32,37 @@ export class SVGRenderer {
         `;
     }
 
-    render(config, state = null) {
+    render(config, state = null, mode = 'dijkstra') {
         const edgesGroup = this.svg.querySelector('#edges');
         const nodesGroup = this.svg.querySelector('#nodes');
         edgesGroup.innerHTML = '';
         nodesGroup.innerHTML = '';
 
         window.__renderCount = (window.__renderCount || 0) + 1;
+
+        const isKruskal = mode === 'kruskal' || (state && state.algorithm === 'kruskal');
+
+        let inMst = new Set();
+        let rejectedEdges = new Set();
+        let currentEdgeKey = null;
+
+        if (isKruskal && state) {
+            if (state.mstSnapshot) {
+                for (const e of state.mstSnapshot) {
+                    inMst.add(`${e.u}--${e.v}`);
+                    inMst.add(`${e.v}--${e.u}`);
+                }
+            }
+            if (state.allRejected) {
+                for (const e of state.allRejected) {
+                    rejectedEdges.add(`${e.u}--${e.v}`);
+                    rejectedEdges.add(`${e.v}--${e.u}`);
+                }
+            }
+            if (state.edge) {
+                currentEdgeKey = `${state.edge.u}--${state.edge.v}`;
+            }
+        }
 
         for (const edge of config.edges) {
             if (!config.nodes.includes(edge.u) || !config.nodes.includes(edge.v)) continue;
@@ -50,18 +74,44 @@ export class SVGRenderer {
             line.setAttribute("y1", p1.y);
             line.setAttribute("x2", p2.x);
             line.setAttribute("y2", p2.y);
-            line.setAttribute("stroke", "var(--ink-dark)");
-            line.setAttribute("stroke-width", "2");
             
-            const markerEnd = edge.v.length > 3 ? "url(#arrow-lg)" : "url(#arrow)";
-            const markerStart = edge.u.length > 3 ? "url(#arrow-lg)" : "url(#arrow)";
+            const edgeKey1 = `${edge.u}--${edge.v}`;
+            const edgeKey2 = `${edge.v}--${edge.u}`;
 
-            if (edge.direction === 'forward') {
-                line.setAttribute("marker-end", markerEnd);
-            } else if (edge.direction === 'backward') {
-                line.setAttribute("x1", p2.x); line.setAttribute("y1", p2.y);
-                line.setAttribute("x2", p1.x); line.setAttribute("y2", p1.y);
-                line.setAttribute("marker-end", markerStart);
+            if (isKruskal && state) {
+                const isCurrent = (currentEdgeKey === edgeKey1 || currentEdgeKey === edgeKey2);
+                const isInTree = (inMst.has(edgeKey1) || inMst.has(edgeKey2));
+                const isRejected = (rejectedEdges.has(edgeKey1) || rejectedEdges.has(edgeKey2));
+
+                if (isInTree) {
+                    line.setAttribute("stroke", "var(--ink-green)");
+                    line.setAttribute("stroke-width", "5");
+                } else if (isCurrent && !state.accepted) {
+                    line.setAttribute("stroke", "var(--ink-red)");
+                    line.setAttribute("stroke-width", "4");
+                    line.setAttribute("stroke-dasharray", "6,4");
+                } else if (isRejected) {
+                    line.setAttribute("stroke", "rgba(179, 38, 30, 0.35)");
+                    line.setAttribute("stroke-width", "2");
+                    line.setAttribute("stroke-dasharray", "4,4");
+                } else {
+                    line.setAttribute("stroke", "rgba(31, 46, 90, 0.35)");
+                    line.setAttribute("stroke-width", "2");
+                }
+            } else {
+                line.setAttribute("stroke", "var(--ink-dark)");
+                line.setAttribute("stroke-width", "2");
+                
+                const markerEnd = edge.v.length > 3 ? "url(#arrow-lg)" : "url(#arrow)";
+                const markerStart = edge.u.length > 3 ? "url(#arrow-lg)" : "url(#arrow)";
+
+                if (edge.direction === 'forward') {
+                    line.setAttribute("marker-end", markerEnd);
+                } else if (edge.direction === 'backward') {
+                    line.setAttribute("x1", p2.x); line.setAttribute("y1", p2.y);
+                    line.setAttribute("x2", p1.x); line.setAttribute("y2", p1.y);
+                    line.setAttribute("marker-end", markerStart);
+                }
             }
 
             edgesGroup.appendChild(line);
@@ -92,11 +142,23 @@ export class SVGRenderer {
             const pos = config.getNodePosition(node);
             
             let isPerm = false;
-            let dist = "∞";
-            if (state) {
+            let distText = "";
+            let isHighlighted = false;
+
+            if (isKruskal && state) {
+                if (state.nodeRoots && state.nodeRoots.has(node)) {
+                    distText = `r=${state.nodeRoots.get(node)}`;
+                }
+                if (state.edge && (state.edge.u === node || state.edge.v === node)) {
+                    isHighlighted = true;
+                }
+            } else if (state && state.permanentSnapshot) {
                 isPerm = state.permanentSnapshot.has(node);
                 const d = state.endDistancesSnapshot.get(node);
-                dist = d === Infinity ? "∞" : d;
+                distText = `d=${d === Infinity ? "∞" : d}`;
+                if (state.selectedNode === node) {
+                    isHighlighted = true;
+                }
             }
 
             const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -110,12 +172,8 @@ export class SVGRenderer {
             circle.setAttribute("cy", "0");
             circle.setAttribute("r", String(r));
             circle.setAttribute("fill", "var(--bg-paper)");
-            circle.setAttribute("stroke", isPerm ? "var(--ink-green)" : "var(--ink-dark)");
-            circle.setAttribute("stroke-width", isPerm ? "4" : "2");
-            
-            if (state && state.selectedNode === node) {
-                circle.setAttribute("stroke", "var(--ink-red)"); 
-            }
+            circle.setAttribute("stroke", isPerm ? "var(--ink-green)" : (isHighlighted ? "var(--ink-red)" : "var(--ink-dark)"));
+            circle.setAttribute("stroke-width", (isPerm || isHighlighted) ? "4" : "2");
 
             const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
             label.setAttribute("y", node.length > 3 ? "4" : "5");
@@ -125,25 +183,29 @@ export class SVGRenderer {
             label.setAttribute("font-size", node.length > 3 ? "11px" : "14px");
             label.textContent = node;
 
-            const distLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            distLabel.setAttribute("y", String(-r - 6));
-            distLabel.setAttribute("text-anchor", "middle");
-            distLabel.setAttribute("font-family", "var(--font-hand)");
-            distLabel.setAttribute("font-size", "1.1rem");
-            distLabel.setAttribute("fill", isPerm ? "var(--ink-green)" : "var(--ink-ochre)");
-            distLabel.textContent = `d=${dist}`;
-
-            const bgRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            bgRect.setAttribute("x", String(-r - 4));
-            bgRect.setAttribute("y", String(-r - 19));
-            bgRect.setAttribute("width", String((r + 4) * 2));
-            bgRect.setAttribute("height", "15");
-            bgRect.setAttribute("fill", "var(--bg-paper)");
-            
             g.appendChild(circle);
-            g.appendChild(bgRect);
+
+            if (distText) {
+                const distLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                distLabel.setAttribute("y", String(-r - 6));
+                distLabel.setAttribute("text-anchor", "middle");
+                distLabel.setAttribute("font-family", "var(--font-hand)");
+                distLabel.setAttribute("font-size", "1.1rem");
+                distLabel.setAttribute("fill", isPerm ? "var(--ink-green)" : "var(--ink-ochre)");
+                distLabel.textContent = distText;
+
+                const bgRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                bgRect.setAttribute("x", String(-r - 4));
+                bgRect.setAttribute("y", String(-r - 19));
+                bgRect.setAttribute("width", String((r + 4) * 2));
+                bgRect.setAttribute("height", "15");
+                bgRect.setAttribute("fill", "var(--bg-paper)");
+                
+                g.appendChild(bgRect);
+                g.appendChild(distLabel);
+            }
+
             g.appendChild(label);
-            g.appendChild(distLabel);
             nodesGroup.appendChild(g);
         }
     }

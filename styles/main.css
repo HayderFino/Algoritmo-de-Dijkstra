@@ -30,6 +30,63 @@ h1, h2, h3, h4 {
     margin-top: 0;
 }
 
+/* Algorithm Top Mode Switcher */
+.algo-mode-nav {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.mode-tab {
+    flex: 1;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    border: 3px solid var(--ink-dark);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 3px 3px 0 rgba(31, 46, 90, 0.15);
+}
+
+.mode-tab:hover {
+    background: rgba(31, 46, 90, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 rgba(31, 46, 90, 0.25);
+}
+
+.mode-tab.active {
+    background: var(--ink-dark);
+    color: white;
+    box-shadow: 4px 4px 0 var(--ink-ochre);
+}
+
+.mode-tab .mode-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
+}
+
+.mode-tab .mode-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.mode-tab .mode-subtitle {
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+.mode-tab.active .mode-subtitle {
+    color: #e5d8b8;
+}
+
 header {
     text-align: center;
     margin-bottom: 1.5rem;

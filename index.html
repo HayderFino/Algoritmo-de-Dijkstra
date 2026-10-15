@@ -27,13 +27,26 @@
 <body>
     <div id="global-error" class="tie-breaker-note" style="display:none; position:fixed; top:0; left:0; width:100%; z-index:9999; padding:10px; background-color: var(--ink-red); color: white;"></div>
     
+    <nav class="algo-mode-nav">
+        <button type="button" class="mode-tab active" id="btn-mode-dijkstra">
+            <span class="mode-icon">📍</span>
+            <span class="mode-title">Algoritmo de Dijkstra</span>
+            <span class="mode-subtitle">Ruta Más Corta</span>
+        </button>
+        <button type="button" class="mode-tab" id="btn-mode-kruskal">
+            <span class="mode-icon">🌲</span>
+            <span class="mode-title">Algoritmo de Kruskal</span>
+            <span class="mode-subtitle">Árbol de Expansión Mínima</span>
+        </button>
+    </nav>
+
     <header>
-        <h1>Algoritmo de Dijkstra</h1>
-        <p class="subtitle">Cuaderno de Investigación de Operaciones</p>
+        <h1 id="app-main-title">Algoritmo de Dijkstra</h1>
+        <p class="subtitle" id="app-main-subtitle">Cuaderno de Investigación de Operaciones</p>
     </header>
 
-    <section class="exercise-selection-wrap">
-        <div class="exercise-tabs">
+    <section class="exercise-selection-wrap" id="exercise-selection-section">
+        <div class="exercise-tabs" id="dijkstra-exercise-tabs">
             <button type="button" class="exercise-tab active" id="tab-ex1" data-ex="1">
                 <span class="tab-badge">Ejercicio 1</span>
                 <span class="tab-title">Red de Distribución (11 Nodos)</span>
@@ -79,10 +92,10 @@
                             <option value="undirected">No dirigido</option>
                         </select>
                     </label>
-                    <label>Origen: 
+                    <label id="lbl-start-node">Origen: 
                         <select id="start-node"></select>
                     </label>
-                    <label>Destino: 
+                    <label id="lbl-end-node">Destino: 
                         <select id="end-node"></select>
                     </label>
                 </div>
@@ -109,10 +122,12 @@
                 </table>
 
                 <div class="button-group" style="margin-top:1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                    <button id="btn-example">Cargar Ejercicio 1</button>
-                    <button id="btn-example-3jugs">Cargar Ejercicio 2</button>
+                    <button id="btn-example" class="btn-dijkstra-only">Cargar Ejercicio 1</button>
+                    <button id="btn-example-3jugs" class="btn-dijkstra-only">Cargar Ejercicio 2</button>
+                    <button id="btn-example-kruskal" class="btn-kruskal-only" style="display:none;">Cargar Ejemplo Kruskal (6 Nodos)</button>
                     <button id="btn-clear">Limpiar Red</button>
-                    <button id="btn-start" class="primary">Resolver con Dijkstra</button>
+                    <button id="btn-start" class="primary btn-dijkstra-only">Resolver con Dijkstra</button>
+                    <button id="btn-start-kruskal" class="primary btn-kruskal-only" style="display:none;">Resolver con Kruskal</button>
                 </div>
 
                 <div class="step-controls" id="step-controls" style="display: none; margin-top:1rem;">
@@ -125,7 +140,8 @@
         </section>
 
         <section class="right-panel">
-            <div class="formula-box">
+            <!-- Dijkstra Formula Box -->
+            <div class="formula-box" id="dijkstra-formula-box">
                 <div class="math-eq">\[ e(i) = \min(e(i), E(j) + d(j,i)) \]</div>
                 <ul class="explanation">
                     <li><strong>e(i)</strong>: distancia provisional conocida hasta el nodo i.</li>
@@ -133,6 +149,18 @@
                     <li><strong>d(j,i)</strong>: peso de la conexión desde el nodo j hasta el nodo i.</li>
                     <li><strong>min(...)</strong>: selecciona el valor mínimo (el camino más corto).</li>
                     <li><strong>∞</strong>: representa una distancia inalcanzable por ahora.</li>
+                </ul>
+            </div>
+
+            <!-- Kruskal Flowchart / Rule Box -->
+            <div class="formula-box" id="kruskal-formula-box" style="display: none;">
+                <div class="math-eq" data-latex="\text{Find}(u) \neq \text{Find}(v) \implies T \leftarrow T \cup \{(u, v)\}, \quad \text{Union}(u, v)"></div>
+                <ul class="explanation">
+                    <li><strong>1. Ordenar aristas:</strong> $w(e_1) \le w(e_2) \le \dots \le w(e_m)$ de menor a mayor peso.</li>
+                    <li><strong>2. Find con compresión:</strong> calcula el representante de la componente conexa de $u$ y de $v$.</li>
+                    <li><strong>3. Representantes diferentes:</strong> los nodos están en componentes separadas. Se añade $(u, v)$ al árbol $T$ y se aplica $\text{Union}(u, v)$ por rango.</li>
+                    <li><strong>4. Representantes iguales:</strong> se <em>descarta</em> la arista porque formaría un ciclo cerrado.</li>
+                    <li><strong>5. Condición de parada:</strong> $|T| = |V| - 1$ aristas o aristas agotadas.</li>
                 </ul>
             </div>
 

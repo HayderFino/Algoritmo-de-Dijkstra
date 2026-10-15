@@ -2,10 +2,14 @@ import { AppConfig } from './config.js';
 import { runDijkstra } from './dijkstra.js';
 import { generateHistoryHTML, generateTableHTML } from './history.js';
 import { generateResultHTML } from './results.js';
+import { runKruskal } from './kruskal.js';
+import { generateKruskalHistoryHTML, generateKruskalTableHTML, generateKruskalResultHTML } from './kruskal-history.js';
 import { SVGRenderer } from './svg-renderer.js';
 
 let appConfig = new AppConfig();
 let dijkstraResult = null;
+let kruskalResult = null;
+let currentMode = 'dijkstra'; // 'dijkstra' | 'kruskal'
 let currentStep = -1;
 let renderer = new SVGRenderer('graph-svg');
 
@@ -93,20 +97,49 @@ function syncUI() {
 
 function resetAlgorithm() {
     dijkstraResult = null;
+    kruskalResult = null;
     currentStep = -1;
     stopAutoplay();
     document.getElementById('step-controls').style.display = 'none';
     resultContainer.style.display = 'none';
-    histContainer.innerHTML = '<p class="placeholder-text">Modelo modificado. Vuelve a resolver.</p>';
+    histContainer.innerHTML = currentMode === 'kruskal'
+        ? '<p class="placeholder-text">Modelo modificado. Presiona "Resolver con Kruskal".</p>'
+        : '<p class="placeholder-text">Modelo modificado. Vuelve a resolver con Dijkstra.</p>';
     tableContainer.innerHTML = '';
     syncUI();
 }
 
 function renderAll() {
-    if (dijkstraResult && currentStep >= 0) {
-        renderer.render(appConfig, dijkstraResult.history[currentStep]);
+    if (currentMode === 'kruskal') {
+        if (kruskalResult && currentStep >= 0) {
+            const stepData = kruskalResult.history[currentStep];
+            const nodeRoots = new Map();
+            for (const comp of stepData.componentsSnapshot) {
+                const root = comp[0];
+                for (const node of comp) nodeRoots.set(node, root);
+            }
+            const allRejected = kruskalResult.history
+                .slice(0, currentStep + 1)
+                .filter(s => !s.accepted)
+                .map(s => s.edge);
+
+            renderer.render(appConfig, {
+                algorithm: 'kruskal',
+                edge: stepData.edge,
+                accepted: stepData.accepted,
+                mstSnapshot: stepData.mstSnapshot,
+                allRejected,
+                nodeRoots
+            }, 'kruskal');
+        } else {
+            renderer.render(appConfig, null, 'kruskal');
+        }
     } else {
-        renderer.render(appConfig);
+        if (dijkstraResult && currentStep >= 0) {
+            renderer.render(appConfig, dijkstraResult.history[currentStep], 'dijkstra');
+        } else {
+            renderer.render(appConfig, null, 'dijkstra');
+        }
     }
 }
 
@@ -200,6 +233,76 @@ document.getElementById('tab-ex2')?.addEventListener('click', () => switchExerci
 document.getElementById('btn-example')?.addEventListener('click', () => switchExercise(1));
 document.getElementById('btn-example-3jugs')?.addEventListener('click', () => switchExercise(2));
 
+function switchMode(mode) {
+    currentMode = mode;
+    stopAutoplay();
+    
+    const isKruskal = (mode === 'kruskal');
+    document.getElementById('btn-mode-dijkstra')?.classList.toggle('active', !isKruskal);
+    document.getElementById('btn-mode-kruskal')?.classList.toggle('active', isKruskal);
+
+    const titleEl = document.getElementById('app-main-title');
+    const subtitleEl = document.getElementById('app-main-subtitle');
+    if (titleEl) titleEl.textContent = isKruskal ? "Algoritmo de Kruskal Optimizado" : "Algoritmo de Dijkstra";
+    if (subtitleEl) subtitleEl.textContent = isKruskal ? "Árbol de Expansión Mínima (Conjuntos Disjuntos con Compresión y Rango)" : "Cuaderno de Investigación de Operaciones";
+
+    const dijkstraBox = document.getElementById('dijkstra-formula-box');
+    const kruskalBox = document.getElementById('kruskal-formula-box');
+    if (dijkstraBox) dijkstraBox.style.display = isKruskal ? 'none' : 'block';
+    if (kruskalBox) kruskalBox.style.display = isKruskal ? 'block' : 'none';
+
+    const exTabs = document.getElementById('dijkstra-exercise-tabs');
+    if (exTabs) exTabs.style.display = isKruskal ? 'none' : 'flex';
+
+    document.querySelectorAll('.btn-dijkstra-only').forEach(el => el.style.display = isKruskal ? 'none' : '');
+    document.querySelectorAll('.btn-kruskal-only').forEach(el => el.style.display = isKruskal ? '' : 'none');
+
+    const lblStart = document.getElementById('lbl-start-node');
+    const lblEnd = document.getElementById('lbl-end-node');
+    if (lblStart) lblStart.style.display = isKruskal ? 'none' : 'block';
+    if (lblEnd) lblEnd.style.display = isKruskal ? 'none' : 'block';
+
+    const graphTypeSel = document.getElementById('graph-type');
+    if (isKruskal && graphTypeSel) {
+        graphTypeSel.value = 'undirected';
+        appConfig.setDirected(false);
+    }
+
+    const titleBox = document.getElementById('ex-title');
+    const descBox = document.getElementById('ex-desc');
+    const metaBox = document.getElementById('ex-meta');
+
+    if (isKruskal) {
+        if (titleBox) titleBox.innerHTML = "Algoritmo de Kruskal Optimizado (Árbol de Expansión Mínima)";
+        if (descBox) descBox.innerHTML = "Construcción del Árbol de Expansión Mínima seleccionando sucesivamente las aristas de menor peso sin formar ciclos, mediante estructura de Conjuntos Disjuntos (Disjoint Set Union con compresión de caminos y unión por rango).";
+        if (metaBox) metaBox.innerHTML = `
+            <span class="meta-pill"><strong>Criterio:</strong> Menor peso w(e)</span>
+            <span class="meta-pill"><strong>Estructura:</strong> DSU (Union-Find)</span>
+            <span class="meta-pill"><strong>Detección de Ciclos:</strong> Find(u) == Find(v)</span>
+            <span class="meta-pill"><strong>Condición de Parada:</strong> |T| = |V| - 1</span>
+        `;
+        if (appConfig.nodes.length !== 6 || appConfig.nodes.includes('8,0,0')) {
+            appConfig = new AppConfig();
+            appConfig.initKruskalExample();
+        }
+    } else {
+        const activeEx = document.querySelector('.exercise-tab.active')?.dataset.ex || '1';
+        switchExercise(Number(activeEx));
+    }
+
+    renderStaticMath();
+    resetAlgorithm();
+}
+
+document.getElementById('btn-mode-dijkstra')?.addEventListener('click', () => switchMode('dijkstra'));
+document.getElementById('btn-mode-kruskal')?.addEventListener('click', () => switchMode('kruskal'));
+
+document.getElementById('btn-example-kruskal')?.addEventListener('click', () => {
+    appConfig = new AppConfig();
+    appConfig.initKruskalExample();
+    resetAlgorithm();
+});
+
 document.getElementById('btn-clear').addEventListener('click', () => {
     const n = appConfig.nodes.length;
     appConfig = new AppConfig();
@@ -221,11 +324,40 @@ document.getElementById('btn-start').addEventListener('click', () => {
     }
 });
 
+document.getElementById('btn-start-kruskal')?.addEventListener('click', () => {
+    try {
+        kruskalResult = runKruskal(appConfig.nodes, appConfig.edges);
+        if (!kruskalResult.history || kruskalResult.history.length === 0) {
+            throw new Error("No hay aristas válidas para ejecutar Kruskal.");
+        }
+        currentStep = 0;
+        document.getElementById('step-controls').style.display = 'block';
+        resultContainer.style.display = 'none';
+        updateUI();
+    } catch(e) {
+        showError(e.message);
+    }
+});
+
+function getTotalSteps() {
+    if (currentMode === 'kruskal') {
+        return kruskalResult ? kruskalResult.history.length : 0;
+    }
+    return dijkstraResult ? dijkstraResult.history.length : 0;
+}
+
 function updateUI() {
     renderAll();
-    const partialResult = { history: dijkstraResult.history.slice(0, currentStep + 1) };
-    histContainer.innerHTML = generateHistoryHTML(partialResult);
-    tableContainer.innerHTML = generateTableHTML(partialResult, appConfig.nodes);
+    if (currentMode === 'kruskal') {
+        if (!kruskalResult) return;
+        histContainer.innerHTML = generateKruskalHistoryHTML(kruskalResult, currentStep);
+        tableContainer.innerHTML = generateKruskalTableHTML(kruskalResult, currentStep);
+    } else {
+        if (!dijkstraResult) return;
+        const partialResult = { history: dijkstraResult.history.slice(0, currentStep + 1) };
+        histContainer.innerHTML = generateHistoryHTML(partialResult);
+        tableContainer.innerHTML = generateTableHTML(partialResult, appConfig.nodes);
+    }
     
     // Renderizado explícito programático KaTeX
     document.querySelectorAll('.math-eq').forEach(el => {
@@ -235,10 +367,10 @@ function updateUI() {
                 try {
                     katex.render(latex, el, {throwOnError: false});
                 } catch(e) {
-                    el.textContent = latex.replace(/\\min/g, 'min').replace(/\\infty/g, '∞').replace(/\\cdot/g, '·');
+                    el.textContent = latex.replace(/\\min/g, 'min').replace(/\\infty/g, '∞').replace(/\\cdot/g, '·').replace(/\\text\{([^\}]+)\}/g, '$1');
                 }
             } else {
-                el.textContent = latex.replace(/\\min/g, 'min').replace(/\\infty/g, '∞').replace(/\\cdot/g, '·');
+                el.textContent = latex.replace(/\\min/g, 'min').replace(/\\infty/g, '∞').replace(/\\cdot/g, '·').replace(/\\text\{([^\}]+)\}/g, '$1');
             }
         }
     });
@@ -246,7 +378,8 @@ function updateUI() {
 
 document.getElementById('btn-next').addEventListener('click', () => {
     stopAutoplay();
-    if (dijkstraResult && currentStep < dijkstraResult.history.length - 1) {
+    const total = getTotalSteps();
+    if (total > 0 && currentStep < total - 1) {
         currentStep++; updateUI();
     }
 });
@@ -270,7 +403,8 @@ document.getElementById('btn-auto').addEventListener('click', () => {
     } else {
         document.getElementById('btn-auto').textContent = "Pausar";
         autoplayInterval = setInterval(() => {
-            if (currentStep < dijkstraResult.history.length - 1) {
+            const total = getTotalSteps();
+            if (currentStep < total - 1) {
                 currentStep++;
                 updateUI();
             } else {
@@ -283,14 +417,21 @@ document.getElementById('btn-auto').addEventListener('click', () => {
 
 document.getElementById('btn-finish').addEventListener('click', () => {
     stopAutoplay();
-    currentStep = dijkstraResult.history.length - 1;
-    updateUI();
-    showFinalResult();
+    const total = getTotalSteps();
+    if (total > 0) {
+        currentStep = total - 1;
+        updateUI();
+        showFinalResult();
+    }
 });
 
 function showFinalResult() {
     resultContainer.style.display = 'block';
-    resultContainer.innerHTML = generateResultHTML(dijkstraResult, appConfig.target);
+    if (currentMode === 'kruskal') {
+        resultContainer.innerHTML = generateKruskalResultHTML(kruskalResult);
+    } else {
+        resultContainer.innerHTML = generateResultHTML(dijkstraResult, appConfig.target);
+    }
 }
 
 document.getElementById('graph-svg').addEventListener('graph-moved', (ev) => {

@@ -130,6 +130,35 @@ export class AppConfig {
         };
     }
 
+    initKruskalExample() {
+        this.nodes = ['1', '2', '3', '4', '5', '6'];
+        this.source = '1';
+        this.target = '6';
+        this.edges = [];
+        this.nextEdgeId = 1;
+        this.directed = false;
+
+        const add = (u, v, w) => this.addEdge(u, v, w, 'both');
+        add('1', '2', 1);
+        add('1', '3', 5);
+        add('2', '3', 4);
+        add('2', '4', 3);
+        add('3', '4', 2);
+        add('3', '5', 6);
+        add('4', '5', 7);
+        add('4', '6', 8);
+        add('5', '6', 9);
+
+        this.positions = {
+            '1': { x: 150, y: 325 },
+            '2': { x: 380, y: 180 },
+            '3': { x: 380, y: 470 },
+            '4': { x: 620, y: 180 },
+            '5': { x: 620, y: 470 },
+            '6': { x: 850, y: 325 }
+        };
+    }
+
     setNodeCount(n) {
         const count = Number(n);
         if (isNaN(count) || count < 2 || count > 30) {
